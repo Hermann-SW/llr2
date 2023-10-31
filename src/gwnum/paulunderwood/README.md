@@ -12,6 +12,7 @@ It contained his gw_utility code, that allows for eg. <kbd>gw_powm ( r, b, e, n 
 ```
 make
 ```
+When linking on AMD CPUs under Ubuntu 22.04, there is a ld relocation warning.
 
 There are "clean", "cpplint" and "cppcheck" targets as well.
 
@@ -37,4 +38,31 @@ $ gp -q
 ? p-1==lift(Mod(s,p)^2)
 1
 ? 
+```
+
+## Runtimes
+
+On all 3 CPUs currently sqrtm1 runs at 100% (single core) only:
+```
+hermann@i7-11850H$ gp -q < <(echo "print1(289*2^18502+1)") | time ./sqrtm1 >> out
+smallest quadratic non-residue prime: 3
+23.70user 0.00system 0:23.63elapsed 100%CPU (0avgtext+0avgdata 6784maxresident)k
+0inputs+16outputs (0major+478minor)pagefaults 0swaps
+hermann@i7-11850H$ 
+```
+
+```
+hermann@7600x:~/llr2/src/gwnum/paulunderwood$ gp -q < <(echo "print1(289*2^18502+1)") | time ./sqrtm1 >> out
+smallest quadratic non-residue prime: 3
+5.83user 0.00system 0:05.71elapsed 102%CPU (0avgtext+0avgdata 19584maxresident)k
+0inputs+16outputs (0major+3429minor)pagefaults 0swaps
+hermann@7600x:~/llr2/src/gwnum/paulunderwood$ 
+```
+
+```
+hermann@7950x:~/llr2/src/gwnum/paulunderwood$ gp -q < <(echo "print1(289*2^18502+1)") | time ./sqrtm1 >> out
+smallest quadratic non-residue prime: 3
+5.72user 0.10system 0:05.46elapsed 106%CPU (0avgtext+0avgdata 18944maxresident)k
+0inputs+8outputs (0major+3496minor)pagefaults 0swaps
+hermann@7950x:~/llr2/src/gwnum/paulunderwood$ 
 ```
