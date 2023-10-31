@@ -4,14 +4,16 @@ Initial code drop was done from this forum posting of [paulunderwood](https://ww
 [https://www.mersenneforum.org/showthread.php?p=641952#post641946](https://www.mersenneforum.org/showthread.php?p=641952#post641946)  
 It contained his gw_utility code, that allows for eg. <kbd>gw_powm ( r, b, e, n )</kbd> making use of superefficient gwnum library, to produce result of libgmp <kbd>powm( r, b, e, n )</kbd>.
 
-"gw_powm()" will be used in "sqrtm1.c" code to compute "sqrt(-1) (mod p)", as done until now with Jean Penné's LLR software for computing that, eg. for largest known 11.9million digit non-Mersenne prime:  
+"gw_powm()" is used in "sqrtm1.cc" code to compute "sqrt(-1) (mod p)", as done until now with Jean Penné's (patched for writing 2nd last computed value) LLR software for computing that, eg. for largest known 11.9million digit non-Mersenne prime:  
 [https://github.com/Hermann-SW/11887192-digit-prime](https://github.com/Hermann-SW/11887192-digit-prime)
 
 ## Build
 
 ```
-bash sh_make
+make
 ```
+
+There are "clean", "cpplint" and "cppcheck" targets as well.
 
 ## Verification of example_usage
 ```
