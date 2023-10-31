@@ -1,1 +1,1 @@
-gcc -o prg prg.c gw_utility.c -lgmp -lgwnum -lm
+gcc -o prg prg.c gw_utility.c -lgmp -I.. -L../linux64 -l:gwnum.a -lm
