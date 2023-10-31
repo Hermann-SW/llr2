@@ -1,14 +1,14 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include <iostream>
 #include <gmpxx.h>
+#include <iostream>
 
 extern "C" {
-#include "gw_utility.h"
+#include "./gw_utility.h"
 }
 
-int main () {
+int main() {
     mpz_class r, b, e, p;
 
     mpz_inp_str(p.get_mpz_t(), NULL, 10);
