@@ -22,3 +22,17 @@ Mod(35621, 1001111)
 $
 ```
 
+```
+$ echo -n "s=" > out
+$ gp -q < <(echo "print1(289*2^18502+1)") | ./sqrtm1 >> out
+smallest quadratic non-residue prime: 3
+$ echo ";" >> out
+$ gp -q
+? p=289*2^18502+1;
+? readvec("out");
+? [#digits(p),#digits(s)]
+[5573, 5573]
+? p-1==lift(Mod(s,p)^2)
+1
+? 
+```
