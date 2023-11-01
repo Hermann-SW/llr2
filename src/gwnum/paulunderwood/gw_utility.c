@@ -29,7 +29,7 @@ q prime
 
 #define THREADS 16
 #define INI_FFT_SIZE 0 // Increase if trouble
-#define MAX_STRING_LENGTH 131072
+#define MAX_STRING_LENGTH 12000000
 #define GW_THRESHOLD 8192
 #define SAFE 64 // Careful loops for large base loop.
 #define ROUND_OFF_LIMIT 0.44

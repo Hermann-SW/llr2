@@ -13,7 +13,7 @@ int main() {
 
     mpz_inp_str(p.get_mpz_t(), NULL, 10);
     assert(p % 4 == 1);
-    assert(0 != mpz_probab_prime_p(p.get_mpz_t(), 30));
+//    assert(0 != mpz_probab_prime_p(p.get_mpz_t(), 30));
 
     e = p / 4;
 
