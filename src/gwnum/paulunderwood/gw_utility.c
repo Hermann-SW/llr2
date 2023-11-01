@@ -29,7 +29,7 @@ q prime
 
 #define THREADS 16
 #define INI_FFT_SIZE 0 // Increase if trouble
-#define MAX_STRING_LENGTH 12000000
+#define MAX_STRING_LENGTH 32000000
 #define GW_THRESHOLD 8192
 #define SAFE 64 // Careful loops for large base loop.
 #define ROUND_OFF_LIMIT 0.44
@@ -46,7 +46,7 @@ void small_base_exp ( mpz_ptr mr, double db, mpz_srcptr me, mpz_srcptr mn )
     int j;
     int zstep;
     unsigned zb = db;
-    char string [MAX_STRING_LENGTH];
+    char *string = (char*)malloc(MAX_STRING_LENGTH);
     mpz_t zr, zn, zc, zrq;
     gwnum wr, wc;
     gwhandle *gwdata;
@@ -137,7 +137,7 @@ void medium_base_exp ( mpz_ptr mr, double db, mpz_srcptr me, mpz_srcptr mn )
     int zstep;
     int j;
     unsigned zb = db;
-    char string [MAX_STRING_LENGTH];
+    char *string = (char*)malloc(MAX_STRING_LENGTH);
     mpz_t zr, zn, zc, zrq;
     giant gr, gn;
     gwnum wr, wc;
@@ -220,7 +220,7 @@ void large_base_exp ( mpz_ptr mr, mpz_srcptr mb, mpz_srcptr me, mpz_srcptr mn )
     int j = mpz_sizeinbase ( me, 2 ) - 2;
     int k = j - SAFE;
     int zstep;
-    char string [MAX_STRING_LENGTH];
+    char *string = (char*)malloc(MAX_STRING_LENGTH);
     mpz_t zr, zb, zn, zc, zrq;
     giant gr, gb, gn;
     gwnum wr, wb, wc;
