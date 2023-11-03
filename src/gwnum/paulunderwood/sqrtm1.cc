@@ -27,4 +27,6 @@ int main() {
     gw_powm(r.get_mpz_t(), b.get_mpz_t(), e.get_mpz_t(), p.get_mpz_t());
 
     std::cout << r;
+
+    assert((r*r)%p == p-1);
 }
