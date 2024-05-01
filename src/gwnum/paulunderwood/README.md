@@ -66,3 +66,29 @@ smallest quadratic non-residue prime: 3
 0inputs+8outputs (0major+3496minor)pagefaults 0swaps
 hermann@7950x:~/llr2/src/gwnum/paulunderwood$ 
 ```
+
+## prp
+
+New prp.cc allows to test arbitrary numbers for PRP (which cannot be tested with eg. mprime or LLR).
+
+Script doit4 proves that 490,001 decimal digit p+2 with p being palindrome prime is not PRP-2 and threfore not prime. Therefore p is not a twin prime in addition. This if the bigger of only 2 candidates for twin prime of 20 palindrom primes in t5k.org:  
+https://gist.github.com/Hermann-SW/fbcfe5ea27aa0d36a1f118439154119b?permalink_comment_id=5043232#gistcomment-5043232
+
+Computation was done with around 430% CPU of AMD 7950X CPU:  
+```
+hermann@7950x:~/llr2/src/gwnum/paulunderwood$ ./doit4
+bytes=490001
+smallest quadratic non-residue: 2
+0
+2977.68user 227.18system 12:26.35elapsed 429%CPU (0avgtext+0avgdata 32480maxresident)k
+0inputs+0outputs (0major+34388minor)pagefaults 0swaps
+hermann@7950x:~/llr2/src/gwnum/paulunderwood$
+```
+
+It is important for gwnum lib performance to fixate all threads onto chiplet0 of AMD 7950X CPU:  
+```
+$ cat doit4 
+#!/bin/bash
+gp -q < <(echo "print1(10^490000+3*(10^7383-1)/9*10^241309+3)") | time taskset -c 0-7,16-23 ./prp $1
+$
+```
