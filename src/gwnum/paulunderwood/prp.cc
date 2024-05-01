@@ -9,13 +9,11 @@ extern "C" {
 }
 
 int main(int argc, char *argv[]) {
-    mpz_class r, b, e, p;
+    mpz_class r, b, e, p, one = mpz_class("1");
 
     printf("bytes=%ld\n", mpz_inp_str(p.get_mpz_t(), NULL, 10));
-    assert(p % 4 == 1);
-//    assert(0 != mpz_probab_prime_p(p.get_mpz_t(), 30));
 
-    e = p / 4;
+    e = p-1;
 
     // deterministic fast search for smallest quadratic non-residue
     b = (argc < 2) ? 2 : atoi(argv[1]);
@@ -26,7 +24,5 @@ int main(int argc, char *argv[]) {
 
     gw_powm(r.get_mpz_t(), b.get_mpz_t(), e.get_mpz_t(), p.get_mpz_t());
 
-    std::cout << r << "\n";
-
-    assert((r*r)%p == p-1);
+    std::cout << (r == one) << "\n";
 }
